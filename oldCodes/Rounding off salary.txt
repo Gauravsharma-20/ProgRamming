@@ -1,0 +1,24 @@
+//add 0.5 to it to round off.
+#include<iostream>
+using namespace std;
+
+int main() {
+	// Write your code here
+int b,t;
+    cin>>b;
+    char a;
+    cin>>a;
+    t =( (1.59)*b + 0.5 );
+    switch(a)
+    {
+        case 'A':
+            t +=1700;
+            break;
+        case 'B':
+            t +=1500;
+            break;
+        default:
+            t +=1300;
+    }
+    cout<<t<<endl;
+}

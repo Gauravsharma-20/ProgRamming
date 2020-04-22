@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	// Write your code here
+	int x,n,m=1;
+    cin>>x>>n;
+    while(n--)
+    {
+        m= m*x;
+    }
+    cout<<m;
+}

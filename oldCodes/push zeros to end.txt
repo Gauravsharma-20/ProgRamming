@@ -1,0 +1,13 @@
+using namespace std;
+void PushZerosEnd(int *input,int size)
+{
+int ptr=0;
+for(int i=0;i<size;i++)
+{
+if(input[i])
+{
+swap(input[ptr],input[i])
+ptr++;
+}
+}
+}

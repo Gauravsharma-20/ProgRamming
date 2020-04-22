@@ -1,0 +1,28 @@
+## Read input as specified in the question.
+## Print output as specified in the question.
+def sort012(li,n):
+    i,j,k=0,0,0
+    for a in range(n):
+        if li[a] == 0:
+            li[k] = 2
+            li[j] = 1
+            li[i] = 0
+            i = i+1
+            j = j+1
+            k = k+1
+        elif li[a] == 1:
+            li[k] = 2
+            li[j] = 1
+            j = j+1
+            k = k+1
+        else:
+            li[k] = 2
+            k = k+1
+            
+            
+    
+###MAIN
+n = int(input())
+li = [int(x) for x in input().split()]
+sort012(li,n)
+print(*li)
