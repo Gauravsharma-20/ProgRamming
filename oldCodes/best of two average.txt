@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+// Print name and average separated by space 
+int main() {
+
+	// Write your code here
+int a,b,c,k,avg;
+    char n;
+    cin>>n;
+    cin>>a>>b>>c;
+    k = min(min(a,b),c);
+    avg = a+b+c-k/2;
+    cout<<n<<" "<<avg<<endl;
+}
