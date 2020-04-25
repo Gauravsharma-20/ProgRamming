@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+   string a;
+   cout<<"Enter a binary number"<<endl;
+   cin>>a;
+   int k = (int)a[0];
+   int i=0,sume=0,sumo=0;
+   while(k!='0/')
+   {
+       if(a[i]%2==0)
+       {
+           sume = sume + a[i];
+       }
+       else
+       {
+           sumo = sumo + a[i];
+        }
+       i++;
+       k=(int)a[i];
+   }
+
+   cout<<"Odd sum:"<<sumo<<" Even sum:"<<sume<<endl;
+}
