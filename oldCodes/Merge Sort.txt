@@ -1,0 +1,60 @@
+
+void mergeTwoArrays(int arr1[],int size1,int arr2[], int size2, int ans[])
+{
+     int i=0,j=0;
+    for(int z=0;z<size1+size2;z++)
+    {
+        if(j != size2 && i != size1)
+        {
+            
+        if(arr1[i]<arr2[j])
+        {
+            ans[z] = arr1[i];
+            i++;
+        }
+        else
+        {
+            ans[z] = arr2[j];
+            j++;
+        }
+            
+        }
+        else
+        {
+            if(j == size2)
+            {
+                ans[z] = arr1[i];
+                i++;
+            }
+            else
+            {
+                ans[z] = arr2[j];
+                j++;
+            }
+        }
+    }
+    
+    
+    
+}
+
+void mergeSort(int input[], int size){
+	// Write your code here
+    if(size<=1)
+    {
+        return;
+    }
+    int part1 = (size+1)/2, part2 = (size)/2;
+    int a[part1], b[part2];
+    for(int i=0;i<part1;i++)
+    {
+        a[i] = input[i];
+    }
+    for(int j=0;j<part2;j++)
+    {
+        b[j] = input[part1+j];
+    }
+    mergeSort(a,part1);
+    mergeSort(b,part2);
+    mergeTwoArrays(a,part1,b,part2,input);
+}

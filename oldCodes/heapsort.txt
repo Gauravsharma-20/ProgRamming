@@ -1,0 +1,76 @@
+
+void insertinvirtualheap(int arr[],int n)
+{
+    //up heapify
+    int ci = n-1;
+    while( ci > 0 )
+    {
+        int pi = (ci-1)/2;
+        if(arr[ci]<arr[pi])
+        {
+            int k = arr[ci];
+            arr[ci] = arr[pi];
+            arr[pi] = k;
+        }
+        else
+        {
+            break;
+        }
+        ci = pi;
+    }
+}
+void deletefromvirtualheap(int arr[],int n)
+{
+ if(n == 0)
+ {
+     return;
+ }
+    int k = arr[0];
+    arr[0] = arr[n-1];
+    arr[n-1] = k;
+    n--;
+
+    int parentindex = 0;
+    int cl = (2*parentindex) +1;
+    int cr = (2*parentindex) +2;
+    while(cl < n)
+    {
+        int maxindex = parentindex;
+        if(arr[cl] < arr[maxindex])
+        {
+            maxindex = cl;
+        }
+        if(cr < n && arr[cr] < arr[maxindex])
+        {
+            maxindex = cr;
+        }
+        if(maxindex == parentindex)
+        {
+            break;
+        }
+        else
+        {
+            int temp = arr[maxindex];
+            arr[maxindex] = arr[parentindex];
+            arr[parentindex] = temp;
+            parentindex = maxindex;
+             cl = (2*parentindex) +1;
+             cr = (2*parentindex) +2;
+        }
+    }
+}
+void inplaceHeapSort(int input[], int n){
+    /* Don't write main().
+     * Don't read input, it is passed as function argument.
+     * Change in the given input itself.
+     * Taking input and printing output is handled automatically.
+     */
+    for(int i=0;i<n;i++)
+    {
+        insertinvirtualheap(input,i+1);
+    }
+    for(int z=0;z<n;z++)
+    {
+        deletefromvirtualheap(input,n-z);
+    }
+}

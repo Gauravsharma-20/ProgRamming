@@ -1,0 +1,21 @@
+// arr - input array
+// n - size of array
+void SelectionSort(int arr[], int n) {
+	// Write your code here
+	int k,temp,q;
+    for(int i=0;i<n;i++)
+    {
+        q = arr[i];
+        for(int j=i;j<n;j++)
+        {
+            if(arr[j]<=q)
+            {
+                q = arr[j];
+                k = j;
+            }
+        }
+        temp = arr[k];
+        arr[k] = arr[i];
+        arr[i] = temp;
+    }
+}
