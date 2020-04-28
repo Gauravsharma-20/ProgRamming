@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	// Write your code here
+	int n,k=0,c=0;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    if(a[0]>a[1])
+  {
+     for(int i=0;i<n-1;i++)
+     {
+         if(c==1)
+         {
+             if(a[i+1]<a[i])
+             {
+                 c++;
+                 break;
+             }
+             else
+             {
+                 continue;
+             }
+         }
+         if(a[i+1]>a[i])
+         {
+             c++;
+             k++;
+         }
+     }
+   if(k==0||c==1)
+    {
+            cout<<"true"<<endl;
+    }
+     else
+    {
+            cout<<"false"<<endl;
+      }
+}
+    if(a[0]<a[1])
+    {
+        for(int i=0;i<n;i++)
+        {
+            for(int z=i;z<n;z++)
+            {
+                if(a[i]>a[z])
+                {
+                    k++;
+                }
+            }
+        }
+        if(k==0)
+        {
+            cout<<"true"<<endl;
+        }
+        else
+        {
+            cout<<"false"<<endl;
+        }
+    }
+    
+}
