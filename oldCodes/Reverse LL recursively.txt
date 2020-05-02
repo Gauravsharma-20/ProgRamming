@@ -1,0 +1,19 @@
+void Reverse_LL_rec(Node*head)
+{
+
+if(head == NULL || head->next == NULL)
+{
+return head;
+}
+
+Node* smallhead = Reverse_LL_rec(head->next);
+/*Node* tail = smallhead;
+while(tail->next != NULL)
+{
+tail = tail->next;
+}*/
+Node* tail = head->next;
+tail->next = head;
+head->next = NULL;
+return smallhead;
+}
