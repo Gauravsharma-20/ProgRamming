@@ -1,0 +1,44 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int n,b=0,p,k,q,w;
+    char e = 'A';
+    cin>>n;
+    k=n;
+    while(k!=0)
+    {
+        b++;
+        p = pow(26,b);
+        k = n / p;
+    }
+    cout<<b<<endl;
+    cout<<sizeof(bool)<<endl;
+    char ar[b];
+
+    for(int i=0;i<b;i++)
+    {//yha equalty nahi daali the phele
+      if(i==b-1)
+        {
+            if(n%26==0)
+            {
+                ar[i] = 'Z';
+            }
+            else
+            {
+                q = n%26;
+            ar[i] = 'A'+ q -1;
+            }
+        }
+    else
+        {
+                p = pow(26,b-i-1);
+                w = n / p;
+                w = (w%26);
+                ar[i] = e + w - 1;
+        }
+        cout<<ar[i]<<" ";
+    }
+}

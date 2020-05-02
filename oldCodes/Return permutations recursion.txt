@@ -1,0 +1,36 @@
+#include <string>
+#include<cstring>
+using namespace std;
+
+int returnPermutations(string input, string output[]){
+   	/* Don't write main() function.
+	 * Don't read input, it is passed as function argument.
+	 * Print output as specified in the question
+	*/
+    if(input[1]=='\0')
+    {
+        output[0] = input[0];
+        return 1;
+    }
+    string temp[1000000];
+    int smalloutput = returnPermutations(input.substr(1),temp);
+    int i=0,j=0,z=0,m=temp[0].length();
+    for(i=0;i<input.length();i++)
+    {
+        for(j=0;j<smalloutput;j++)
+        {
+           /* output[z] = temp[j];
+            for(m=temp[0].length();m>i;m--)
+            {
+                output[z][m] = output[z][m-1];
+            }
+            output[z][i] = input[0];
+                    z++;
+            */
+            output[z] = temp[j].substr(0,i);
+            output[z] += input[0] + temp[j].substr(i);
+            z++;
+        }
+    }
+    return z;
+}
