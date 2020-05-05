@@ -1,0 +1,76 @@
+// Following is the node structure
+/**************
+class node{
+public:
+    int data;
+    node * next;
+    node(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+***************/
+node* merge(node *head1, node *head2) {
+    /* Don't write main().
+     * Don't read input, it is passed as function argument.
+     * Return output and don't print it.
+     * Taking input is handled automatically.
+     */
+    node* head = NULL, *tail = NULL;
+    node* t1 = head1, *t2 = head2;
+    if(t1->data < t2->data)
+    {
+        head = t1;
+        tail = t1;
+        t1 = t1->next;
+    }
+    else
+    {
+        head = t2;
+        tail = t2;
+        t2 = t2->next;
+    }
+    while(t2 != NULL && t1 != NULL)
+    {
+        if(t1->data < t2->data)
+        {
+            tail->next = t1;
+            t1 = t1->next;
+            tail = tail->next;
+        }
+        else
+        {
+            tail->next = t2;
+            t2 = t2->next;
+            tail = tail->next;
+        }
+    }
+    if(t2 != NULL)
+    {
+        tail->next = t2;
+    }
+    if(t1 != NULL)
+    {
+        tail->next = t1;
+    }
+    return head;
+}
+
+node* mergeSort(node *head) {
+    //write your code here
+    node* mid = head,*end = head,*temp = head;
+    if(head==NULL||head->next==NULL)
+    {
+        return head;
+    }
+    while(end !=0&&end->next != 0)
+    {
+        temp = mid;
+        mid = mid->next;
+        end = end->next->next;
+    }
+    temp->next = NULL;
+    mid = mergeSort(mid);
+   head = mergeSort(head);
+    return merge(head,mid);
+}
