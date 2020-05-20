@@ -1,0 +1,12 @@
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	cout << "Hello World!" << " abcde   " << endl ;
+	//cout << endl;
+	cout << "Hello World!" << "\n";
+	//cout << "\n";
+}
+
+
