@@ -1,0 +1,16 @@
+void swap(int &a,int &b){
+    b = a+b - (a=b);
+}
+void pushZeroesEnd(int *arr, int size)
+{
+    //Write your code here
+    int f=0;
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]!=0){
+            swap(arr[f],arr[i]);
+            f++;
+        }
+    }
+}
+
