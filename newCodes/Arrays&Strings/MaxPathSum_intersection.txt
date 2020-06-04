@@ -1,0 +1,35 @@
+long maxPathSum(int ar1[], int ar2[], int m, int n)
+{
+    /* Don't write main().
+     Don't read input, it is passed as function argument.
+     Return output and don't print it.
+     Taking input and printing output is handled automatically.
+     */
+    
+    long maxsum = 0, s1 = 0, s2 = 0;
+    int i=0,j=0;
+    for(;i<m&&j<n;)
+    {
+        if(ar1[i]==ar2[j])
+        {//matched, then add to maxsum and reset
+            s1 += ar1[i++], s2 += ar2[j++];
+            maxsum += s1>s2?s1:s2;
+            s1 = 0, s2 = 0;
+            //i++,j++;
+        }
+        else if(ar1[i]<ar2[j]){
+            s1 += ar1[i++];
+        }
+        else{
+            s2 += ar2[j++];
+        }
+    }
+    for(;i<m;i++){
+        s1 += ar1[i];
+    }
+    for(;j<n;j++){
+        s2 += ar2[j];
+    }
+    
+    return maxsum += s1>s2?s1:s2;
+}

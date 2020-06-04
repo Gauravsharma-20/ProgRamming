@@ -1,0 +1,23 @@
+// input - given string
+// You need to update in the given string itself. No need to print or return anything
+
+void reverse(char input[],int s,int e){
+    while(s<e)
+    {
+        std::swap(input[s++],input[e--]);
+    }
+}
+
+void reverseStringWordWise(char input[]) {
+    // Write your code here
+	int lastSpace = -1;
+    int i=0;
+    for(;input[i]!='\0';i++){
+        if(input[i]==' '){
+            reverse(input,lastSpace+1,i-1);
+            lastSpace = i;
+        }
+    }
+    reverse(input,lastSpace+1,i-1);
+    reverse(input,0,i-1);
+}
