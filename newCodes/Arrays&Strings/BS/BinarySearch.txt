@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool BS(int arr[],int s,int mid,int e,int k)
+{
+    if(s>e)
+    {
+        return false;
+    }
+    mid = (s+e)/2;
+    if(arr[mid] == k)
+    {
+        return true;
+    }
+    else if(arr[mid]<k)
+    {
+        return BS(arr,mid+1,mid,e,k);
+    }
+    else
+    {
+        return BS(arr,s,mid,mid-1,k);
+    }
+
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    sort(arr,arr+n);
+    int k;
+    cin>>k;
+    if(BS(arr,0,0,n-1,k))
+    {
+        cout<<"Found";
+    }
+    else{
+        cout<<"NOT Found";
+    }
+}

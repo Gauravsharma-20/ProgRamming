@@ -1,0 +1,41 @@
+// input - given string
+// output - output string that contains largest unique substring
+void findLargestUniqueSubstring(char arr[], char output[]){
+	// Write your code here
+    int finalStart = 0, finalEnd = 0, len = 0;
+    int s = 0, e = 0;
+    while(arr[e]!='\0')
+    {
+        //The main issue was the FLAG
+        int flag = -1;
+        for(int i=s;i<e;i++)
+        {
+            if(arr[i]==arr[e])
+            {
+                flag = i;
+            }
+        }
+        if(flag != -1)
+        {
+            if(e-s>len)
+            {
+                len = e-s;
+                finalStart = s, finalEnd = e;
+            }
+            s = flag+1;
+        }
+        e++;
+    }
+    
+    e--;
+    if(e-s>len)
+    {
+        len = e-s;
+        finalStart = s, finalEnd = e;
+    }
+    for(int i=0;i<len;i++)
+    {
+        output[i] = arr[finalStart++];
+    }
+    output[len] = '\0';
+}
