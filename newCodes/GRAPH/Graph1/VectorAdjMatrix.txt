@@ -1,0 +1,43 @@
+vector<int> adj[V];
+    for(int i=0;i<E;i++)
+    {
+        int f,s;
+        cin>>f>>s;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }#include<bits/stdC++.h>
+using namespace std;
+
+void DFS(auto adj,int sp,bool* visited)
+{
+    cout<<sp<<" ";
+   // auto adjList = adj[sp];
+   //with the above one you can use -> at(i) size()
+    for(auto i : adj[sp]) //* because we to iterate over vector
+    {
+        if(!visited[i])
+        {
+            visited[i] = true;
+            DFS(adj,i,visited);
+        }
+    }
+}
+
+int main()
+{
+    int V,E;
+    cin>>V>>E;
+    vector<int> adj[V];
+
+    for(int i=0;i<E;i++)
+    {
+        int f,s;
+        cin>>f>>s;
+        adj[f].push_back(s);
+        adj[s].push_back(f);
+    }
+
+    bool visited[V];
+    visited[0] = true;
+    DFS(adj,0,visited);
+}
