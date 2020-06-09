@@ -1,0 +1,81 @@
+#include <iostream>
+#include<queue>
+#include<vector>
+#include<unordered_map>
+using namespace std;
+
+#define Mxn 1000
+
+vector<int> BFS(int edges[][Mxn],int v1,int v2,int V)
+{
+ bool* visited = new bool[V]();
+    
+    queue<int> PendingNodes;
+    PendingNodes.push(v1);
+    visited[v1] = true;
+    
+    vector<int> ans;
+    
+    unordered_map<int,int> who;
+    while(!PendingNodes.empty())
+    {
+        int f = PendingNodes.front();
+        PendingNodes.pop();
+        if(f==v2)
+        {
+            ans.push_back(v2);
+            break;
+        }
+        
+        for(int i=0;i<V;i++)
+        {
+            if(edges[f][i]&&!visited[i])
+            {
+                visited[i] = true;
+                who[i] = f;
+                PendingNodes.push(i);
+            }
+        }
+    }
+    
+    if(ans.size()>0)
+    {
+        int i = v2;
+        while(i!= v1)
+        {
+            ans.push_back(who[i]);
+                i = who[i];
+        }
+        //ans.push_back(v1);
+    }
+    return ans;
+}
+
+int main()
+{
+  int V, E, v1,v2;
+  cin >> V >> E;
+
+  /*
+
+  	   Write Your Code Here
+	   Complete the Rest of the Program
+	   You have to Print the output yourself
+	 
+  */
+    int edges[Mxn][Mxn] = {};
+    for(int i=0;i<E;i++)
+    {
+        int a,b;
+        cin>>a>>b;
+        edges[a][b] = 1, edges[b][a] = 1;
+    }
+    cin>>v1>>v2;
+    vector<int> ans = BFS(edges,v1,v2,V);
+    for(auto i: ans)
+    {
+        cout<<i<<" ";
+    }
+
+  return 0;
+}

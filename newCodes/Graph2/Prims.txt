@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Edge{
+    public:
+    int source,destination,weight;
+};
+
+int FindMinVertex(int weight[],bool visited[],int V)
+{
+    int minV = -1;
+    for(int i=0;i<V;i++)
+    {
+        if(!visited[i]&&(minV ==-1|| weight[i]<weight[minV]))
+        {
+            minV = i;
+        }
+    }
+    return minV;
+}
+
+void Prims(int** edges, int V,int E)
+{
+   bool visited[V];
+    int weights[V];
+    int parent[V];
+    for(int i=0;i<V;i++)
+    {
+        visited[i] = false;
+        weights[i] = INT_MAX;
+	}
+    parent[0] = -1, weights[0] = 0;
+    
+    for(int i=0;i<V;i++)
+    {
+        int minV = FindMinVertex(weights,visited,V);
+        visited[minV] = true;
+        for(int j=0;j<V;j++)
+        {
+            if(edges[minV][j]!=0)
+            {
+                if(!visited[j]&&edges[minV][j]<weights[j])
+                {
+                	weights[j] = edges[minV][j];
+                	parent[j] = minV;
+                }
+            }
+        }
+    }
+    for(int i=1;i<V;i++)
+    {
+        cout<<min(parent[i],i)<<" "<<max(parent[i],i)<<" "<<weights[i]<<endl;
+    }
+}
+
+int main()
+{
+  int V, E, tempX, tempY;
+  cin >> V >> E;
+
+  /*
+  	   Write Your Code Here
+	   Complete the Rest of the Program
+	   You have to Print the output yourself
+	 
+  */
+    int ** arr = new int*[V];
+    for(int i=0;i<V;i++)
+    {
+        arr[i] = new int[V]();
+	}
+    
+    for(int i=0;i<E;i++)
+    {
+        int a,b,c;
+        cin>>a>>b>>c;
+        arr[a][b] = c;
+        arr[b][a] = c;
+    }
+    
+    Prims(arr,V,E);
+
+  return 0;
+}

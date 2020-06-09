@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+void DFS(unordered_map<int,vector<int>*> edges, int sv,int n, bool*  visited)
+{
+    visited[sv] = true;
+    for(auto i: *edges[sv])
+    {
+        if(!visited[i])
+        {
+            DFS(edges,i,n,visited);
+        }
+    }
+}
+
+int solve(int n,int m,vector<int>u,vector<int>v)
+{
+	// Write your code here .
+    unordered_map<int,vector<int> * > edges;
+    for(int i=0;i<n;i++)
+    {
+        vector<int>* temp = new vector<int>;
+        edges[i] = temp;
+    }
+    for(int i=0;i<u.size();i++)
+    {
+        edges[u[i]-1]->push_back(v[i]-1);
+        edges[v[i]-1]->push_back(u[i]-1);
+    }
+    
+    int ans = 0;
+    bool* visited = new bool[n]();
+    for(int i=0;i<n;i++)
+    {
+        if(!visited[i])
+        {
+            ans++;
+            DFS(edges,i,n,visited);
+        }
+    }
+    return ans;
+}

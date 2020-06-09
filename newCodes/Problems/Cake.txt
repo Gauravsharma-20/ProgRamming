@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int visited[NMAX][NMAX];
+int a[4][2] = {{1,0},{0,1},{-1,0},{0,-1}};
+
+int valid(int x,int y,int n)
+{
+    return (x>=0&&x<n&&y>=0&&y<n);
+}
+
+int DFS(char cake[NMAX][NMAX],int n,int i,int j)
+{
+    visited[i][j] = 1;
+    
+    int ans = 1;
+    for(int f=0;f<4;f++)
+    {
+        int x = i+a[f][0];
+        int y = j+a[f][1];
+        if(valid(x,y,n)&&cake[x][y]=='1'&&!visited[x][y])
+        {
+           ans += DFS(cake,n,x,y);
+        }
+    }
+    return ans;
+}
+
+int solve(int n,char cake[NMAX][NMAX])
+{
+	// Write your code here .
+    memset(visited,0,sizeof(visited));
+    int max = 0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(cake[i][j]=='1'&&!visited[i][j])
+            {
+                int ans = DFS(cake,n,i,j);
+                if(ans>max)
+                {
+                    max = ans;
+                }
+            }
+        }
+    }
+    return max;
+}
