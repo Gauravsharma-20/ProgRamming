@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+int visited[MAXN][MAXN];
+int pvp = 0;
+int dx[] = {1,-1,0,0};
+int dy[] = {0,0,1,-1};
+
+void DFS(char board[][MAXN],int i,int j,int fromX,int fromY,char check,int n,int m)
+{
+    if(i<0||i>n||j<0||j>m)
+    {
+        return;
+    }
+    if(board[i][j]!=check)
+    {
+        return;
+    }
+    if(visited[i][j])
+    {
+        pvp = 1;
+        return;
+    }
+    
+    visited[i][j] = 1;
+    
+    for(int f=0;f<4;f++)
+    {
+        int x = i+dx[f];
+        int y = j+dy[f];
+        if(x==fromX&&y==fromY)
+        {
+            continue;
+        }
+        DFS(board,x,y,i,j,check,n,m);
+    }
+}
+int solve(char board[][MAXN],int n, int m)
+{
+	// Write your code here.
+    memset(visited,0,sizeof(visited));
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(!visited[i][j])
+            {
+                 DFS(board,i,j,-1,-1,board[i][j],n,m);
+            }
+        }
+    }
+    return pvp;
+}
