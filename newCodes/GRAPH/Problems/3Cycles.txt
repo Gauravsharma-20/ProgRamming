@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(int n,int m,vector<int>u,vector<int>v)
+{
+	// Write your code here .
+    unordered_map<int,unordered_set<int>> adj;
+    for(int i=0;i<m;i++)
+    {
+        adj[u[i]].insert(v[i]);
+        adj[v[i]].insert(u[i]);
+    }
+    
+    int cycles = 0;
+    for(int vert1=1;vert1<=n;vert1++)
+    {
+        
+        for(int vert2=1;vert2<=n;vert2++)
+        {
+            for(int vert3=vert2+1;vert3<=n;vert3++)
+            {
+                if(adj[vert1].count(vert2)==0)
+                {
+                    break;
+                }
+                if(adj[vert2].count(vert3)==0)
+                {
+                    continue;
+                }
+                
+                if(adj[vert3].count(vert1))
+                {
+                    cycles++;
+                }
+                
+            }
+        }
+    }
+    return cycles/3;
+}
