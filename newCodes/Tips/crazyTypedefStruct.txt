@@ -1,0 +1,52 @@
+#include<iostream>
+#include<queue>
+#include<iterator>
+using namespace std;
+
+typedef struct point
+{
+    int first,second,third;
+}q;
+
+void sortme(queue<q> pq)
+{
+  queue<q>::iterator it1 = pq.begin();
+  queue<q>::iterator it2 = pq.begin();
+  it2++;
+  while(it2!=pq.end())
+  {
+    it1 = pq.begin();
+    it2 = pq.begin();
+    it2++;
+  while(it2!=pq.end())
+  {
+      if(it1->first > it2->first )
+      {
+        int a=it1->first,b=it1->second,c=it1->third;
+        it1->first=it2->first,it1->second=it2->second,it1->third=it2->third;
+        it2->first=a,it2->second=b,it2->third=c;
+      }
+      it1++;
+      it2++;
+  }
+  }
+  return;
+}
+
+int main()
+{
+ int n;
+ cin>>n;
+ queue<q> pq;
+ for(int i=0;i<n;i++)
+ {
+  q a;
+  cin>>a.first>>a.second;
+  a.third = i+1;
+  pq.push(a);
+  //first->arival, second->burst time,third->job
+ }
+ cout<<"Sequence :-\n";
+ sortme(pq);
+ queue<q>::iterator it=pq.begin();
+ while(it!=pq.end())
