@@ -1,0 +1,29 @@
+//all libraries included
+#include<bits/stdc++.h>
+using namespace std;
+
+const int mxN = 50;
+int n;
+string p[mxN], pre[mxN], suf[mxN];
+
+void solve()
+{
+    cin>>n;
+    
+}
+
+int main()
+{
+    //prioritize sync input output
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int t;
+    cin>>t;
+    for(int i=1;i<=t;i++)
+    {
+        cout<<"Case #"<<i<<" : ";
+        solve();
+        cout<<"\n";
+    }
+}
