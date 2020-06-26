@@ -1,0 +1,9 @@
+// Create a set of strings 
+    set<string> st; 
+    st.insert({ "geeks", "for", "geeks", "org" }); 
+  
+    // 'it' evaluates to iterator to set of string 
+    // type automatically 
+    for (auto it = st.begin(); it != st.end(); it++) 
+        cout << *it << " "; 
+  
